@@ -1,0 +1,3 @@
+Task F: Automated Financial Reconciliation
+
+To guarantee data integrity, the pipeline's output must be continuously audited against the source of truth (the finance department's records). The final script performs an automated reconciliation by calculating the total pipeline revenue per month and conducting an outer merge against finance_monthly.csv. By strictly typing the join keys (casting both month columns to string to prevent mismatch errors), the system dynamically outputs a side-by-side discrepancy report. This automated audit proves the pipeline's temporal joins and deduplication logic are mathematically sound and perfectly match the finance ledger.
