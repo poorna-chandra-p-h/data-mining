@@ -1,0 +1,3 @@
+Task B: Deduplication and Idempotent Loads
+
+A resilient data pipeline must handle re-runs gracefully. If the pipeline runs twice, it should not double-count revenue. The data load was designed to be strictly idempotent, meaning repeated executions yield the exact same final state. By applying deduplication logic (such as window functions like ROW_NUMBER() OVER(PARTITION BY bill_no, product_sk)) and using overwrite/upsert patterns rather than blind appends, the system is protected against upstream retry bugs or duplicate file deliveries.
