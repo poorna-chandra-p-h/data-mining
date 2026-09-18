@@ -1,0 +1,3 @@
+Task A: Data Ingestion and Partitioning Strategy
+
+To support scalable dashboard queries and efficient pipeline runs, the raw transaction data was loaded using a partitioning strategy (e.g., by sales_month or business_date). Partitioning physically divides the data on disk. When the BI dashboard queries a specific month's sales, the query engine utilizes partition pruning to scan only the relevant folder/files, drastically reducing I/O operations, saving memory, and ensuring sub-second response times even as the historical dataset grows.
