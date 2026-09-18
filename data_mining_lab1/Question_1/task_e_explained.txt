@@ -1,3 +1,0 @@
-Task D: Temporal Joins for Slowly Changing Dimensions (SCD Type 2)
-
-Accurate historical revenue calculation requires associating a sale with the exact price of the product on the day the sale occurred, not just the current price. The pipeline implements an SCD Type 2 temporal join. By evaluating the condition f.business_date BETWEEN pr.effective_from AND pr.effective_to, the pipeline correctly maps the transaction to the historical pricing record. This ensures that a price hike today does not retroactively inflate last year's calculated revenue.
