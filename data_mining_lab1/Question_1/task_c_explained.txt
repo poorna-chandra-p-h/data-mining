@@ -1,0 +1,3 @@
+Task C: Star Schema and Fact Table Construction
+
+The raw data was transformed into a dimensional model, specifically building a central fact_sales table designed for slicing and dicing in a dashboard. The table was structured to separate facts (measurable, quantitative data like qty and unit_price) from dimensions (descriptive attributes). By resolving granular details into keys (product_sk, store_id, sales_month), the table achieves high query performance and storage efficiency while providing a clean, intuitive interface for downstream BI tools.
