@@ -1,0 +1,14 @@
+Section A, Part (a): Defining Similarity
+
+To mechanically define similarity, I chose Jaccard Similarity over text tokens. However, the exact definition of a "token" dictates what is treated as signal versus noise.
+
+Signal vs. Noise: Based on the scraping team's notes, reference numbers, dates, and monetary values fluctuate wildly across portals for the exact same tender (e.g., 12 Mar 2024 vs 2024-03-12, or 45000000 vs 4.5 Cr). I chose to treat all digits and punctuation as noise and stripped them entirely, leaving only alphabetical characters as the signal.
+
+Decomposition: Because portals inject up to 1,400 characters of identical legal boilerplate, a "bag of words" (unigram) approach would cause two completely different tenders to appear highly similar simply because they share the same boilerplate vocabulary. To combat this, I decomposed the text into Clean Trigrams (3-word moving windows) to enforce sequence strictness.
+
+Evidence from the Corpus:
+I evaluated my adopted method (Clean Trigrams) against a competing method (Raw Unigrams) using a manually adjudicated "same" pair and "different" pair from the corpus.
+
+Different Pair: The competing unigram method yielded a dangerously high similarity of 0.289 due to shared boilerplate. My adopted trigram method crushed this down to 0.179, safely widening the gap and preventing false positives.
+
+Same Pair (The Cost): The competing unigram method scored 0.755. The adopted trigram method scored 0.685. The "cost" of my adoption is a slight penalty to the similarity of true duplicates, as trigrams are brittle to minor typos or word insertions. However, the improved separation margin (0.506 vs 0.466) makes this a worthwhile trade-off.
